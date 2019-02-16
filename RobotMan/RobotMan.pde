@@ -1,20 +1,44 @@
 
 Robot player;
+ArrayList<Door> doors;
 int roomNum = 0;
 boolean up, down, left, right;
 
 
+
 void drawRoom0() {
-  background(192);
+  doors.clear();
+  background(192); //silver
+  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
   
-  
+  for (int i = 0; i < doors.size(); i++) {
+    doors.get(i).display(); //display every door in the room (room0 only has the rightdoor)
+  }
+}
+
+void drawRoom1() {
+  doors.clear();
+  background(150, 75, 0); //brown
+  doors.add(new Door (0, height/2 - 20, 10, 40));
+  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
+  for (int i = 0; i < doors.size(); i++) {
+    doors.get(i).display();
+  }
   
 }
 
+void drawRoom2() {
+  
+}
 
 void drawRoom(int roomNum) {
-  if (roomNum == 0) {
-    drawRoom0();
+  switch (roomNum) {
+    case 0: drawRoom0();
+      break;
+    case 1: drawRoom1();
+      break;
+    case 2: drawRoom2();
+      break;
   }
 }
 
@@ -23,7 +47,8 @@ void setup() {
   size(500, 400);
   background(125);
   noCursor();
-  player = new Robot();
+  player = new Robot(20, 5);
+  doors = new ArrayList<Door>();
   drawRoom(roomNum);
 }
 
@@ -33,7 +58,7 @@ void draw() {
 
 void gameState() {
   drawRoom(roomNum);
-  player.display();  
+  player.display();
   
 }
 
