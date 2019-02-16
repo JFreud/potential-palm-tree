@@ -1,11 +1,14 @@
 class Robot {
-  int size;
+  int size, speed;
   int moralityLevel, activityLevel, chaosLevel; 
   PVector pos;
+  float dir;
 
-  Robot() {
+  Robot(int size, int speed) {
     pos = new PVector (width/2, height/2);
-    size = 20;
+    this.size = size;
+    this.speed = speed;
+    dir = 90;
   }
   
   void display() {
@@ -13,13 +16,53 @@ class Robot {
     ellipse(pos.x, pos.y, size, size);
     update();
     checkBoundaries();
+    checkDoors();
   }
   
   void update() {
-    if (up) { pos.y -= 5; };
-    if (left) { pos.x -= 5; };
-    if (down) { pos.y += 5; };
-    if (right) { pos.x += 5; };
+    if (up) { 
+      pos.y -= speed;
+      dir = 0;
+    }
+    if (left) { 
+      pos.x -= speed; 
+      dir = 270;
+    }
+    if (down) { 
+      pos.y += speed; 
+      dir = 180;
+    }
+    if (right) {
+      pos.x += speed; 
+      dir = 90;
+    }
+  }
+  
+  void checkDoors() {
+   for (int i = 0; i < doors.size(); i++) {
+    Door currDoor = doors.get(i);
+    if (pos.x >= currDoor.x && 
+        pos.x - 5 <= currDoor.dWidth &&
+        pos.y >= currDoor.y && 
+        pos.y <= currDoor.y + currDoor.dHeight) {
+         roomNum--; 
+         if (roomNum <= 0) {
+           roomNum = 0;
+         }
+         pos.x = width - 20;
+         pos.y = height/2;
+        }
+    if (pos.x >= width - currDoor.dWidth && 
+        pos.y >= currDoor.y && 
+        pos.y <= currDoor.y + currDoor.dHeight) {
+         roomNum++;
+         if (roomNum >= maxRoom) {
+            roomNum = maxRoom; 
+         }
+         pos.x = 20;
+         pos.y = height/2;
+        }
+   }
   }
   
    void checkBoundaries() {
