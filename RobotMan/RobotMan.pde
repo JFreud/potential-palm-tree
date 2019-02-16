@@ -2,6 +2,7 @@
 Robot player;
 ArrayList<Door> doors;
 int roomNum = 0;
+int maxRoom = 2;
 boolean up, down, left, right;
 
 
@@ -9,7 +10,8 @@ boolean up, down, left, right;
 void drawRoom0() {
   doors.clear();
   background(192); //silver
-  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
+  println("gere\n");
+  doors.add(new Door (width - 10, height/2 - 20, 10, 40)); //adds the door everytime--inefficient
   
   for (int i = 0; i < doors.size(); i++) {
     doors.get(i).display(); //display every door in the room (room0 only has the rightdoor)
@@ -28,19 +30,22 @@ void drawRoom1() {
 }
 
 void drawRoom2() {
-  
-}
-
-void drawRoom(int roomNum) {
-  switch (roomNum) {
-    case 0: drawRoom0();
-      break;
-    case 1: drawRoom1();
-      break;
-    case 2: drawRoom2();
-      break;
+  doors.clear();
+  background(150, 200, 0); //brown
+  doors.add(new Door (0, height/2 - 20, 10, 40));
+  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
+  for (int i = 0; i < doors.size(); i++) {
+    doors.get(i).display();
   }
 }
+
+void drawRoom() {
+  if (roomNum == 0) drawRoom0();
+  if (roomNum == 1) drawRoom1();
+  if (roomNum == 2) drawRoom2();
+  println(roomNum);
+  }
+
 
 
 void setup() {
@@ -49,7 +54,7 @@ void setup() {
   noCursor();
   player = new Robot(20, 5);
   doors = new ArrayList<Door>();
-  drawRoom(roomNum);
+  drawRoom();
 }
 
 void draw() {
@@ -57,7 +62,7 @@ void draw() {
 }
 
 void gameState() {
-  drawRoom(roomNum);
+  drawRoom();
   player.display();
   
 }
