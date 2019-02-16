@@ -2,6 +2,7 @@
 Robot player;
 int roomNum = 0;
 boolean up, down, left, right;
+Table table;
 
 
 void drawRoom0() {
@@ -16,6 +17,7 @@ void drawRoom(int roomNum) {
   if (roomNum == 0) {
     drawRoom0();
   }
+  table.display();
 }
 
 
@@ -23,8 +25,10 @@ void setup() {
   size(500, 400);
   background(125);
   noCursor();
+  table = new Table(50, 50, color(182,155,76), 40, 40, 4);
   player = new Robot();
   drawRoom(roomNum);
+  
 }
 
 void draw() {
