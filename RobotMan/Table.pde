@@ -1,22 +1,21 @@
-class Table extends Entity {
+class Table extends RegEntity {
   int legHeight;
-  int col;
 
-  Table(int x, int y, int c, int len, int wth, int lh) {
-    super(null);
+  Table(int x, int y, int c, int wth, int ht, int legHeight, int col) {
+    super(x, y, wth, ht, col);
     this.x = x;
     this.y = y;
     this.col = c;
-    this.len = len;
     this.wth = wth;
-    this.legHeight = lh;
+    this.ht = ht;
+    this.legHeight = legHeight;
   }
 
   void display() {
     fill(col);
-    rect(x, y, len, wth);
-    rect(x, y + wth, legHeight, legHeight, 0, 0, 2, 1);
-    rect(x + len - legHeight, y + wth, legHeight, legHeight, 0, 0, 1, 2);
+    rect(x, y, wth, ht);
+    rect(x, y + ht, legHeight, legHeight, 0, 0, 2, 1);
+    rect(x + wth - legHeight, y + ht, legHeight, legHeight, 0, 0, 1, 2);
   }
 
   void setColor(int c) {

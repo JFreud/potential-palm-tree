@@ -1,10 +1,8 @@
-class Scientist extends Entity {
+class Scientist extends ImgEntity {
   String name;
 
   Scientist(int x, int y, PImage img) {
-    super(img);
-
-
+    super(x, y ,img);
     this.x = x;
     this.y = y;
   }

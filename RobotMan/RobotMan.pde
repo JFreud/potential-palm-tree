@@ -1,6 +1,9 @@
 
 Robot player;
 ArrayList<Door> doors;
+ArrayList<Entity> Room0;
+ArrayList<Entity> Room1;
+ArrayList<Entity> Room2;
 int prevRoomNum = -1;
 int roomNum = 0;
 int maxRoom = 2;
@@ -15,8 +18,6 @@ void setupRoom0() {
   doors.clear();
   bgco = color(192);
   doors.add(new Door (width - 10, height/2 - 20, 10, 40)); //adds the door everytime--inefficient
-  
-  
 }
 
 void setupRoom1() {

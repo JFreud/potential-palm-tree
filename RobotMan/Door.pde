@@ -1,17 +1,13 @@
-class Door {
-  int x,y, dWidth, dHeight;
+class Door extends RegEntity {
   
   
-  Door(int x, int y, int dWidth, int dHeight) { 
-    this.x = x;
-    this.y = y;
-    this.dWidth = dWidth;
-    this.dHeight = dHeight;
+  Door(int x, int y, int dWidth, int dHeight, int col) { 
+   super(x, y , dWidth, dHeight, col);
   }
   
   void display() {
-    fill(0);
-    rect(x, y, dWidth, dHeight);
+    fill(col);
+    rect(x, y, wth, ht);
   }
   
   
