@@ -39,7 +39,8 @@ class Robot {
   }
   
   void checkDoors() {
-   for (int i = 0; i < doors.size(); i++) {
+   for (int i = 0; i < currRoom.entities.size(); i++) {
+    if (currRoom.
     Door currDoor = doors.get(i);
     if (pos.x >= currDoor.x && 
         pos.x - 5 <= currDoor.dWidth &&
