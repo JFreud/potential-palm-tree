@@ -3,6 +3,7 @@ class Table extends Entity {
   int col;
 
   Table(int x, int y, int c, int len, int wth, int lh) {
+    super(null);
     this.x = x;
     this.y = y;
     this.col = c;

@@ -5,8 +5,9 @@ class Entity {
   PImage newImg;
   int baseColor;
 
-  Entity() {
-    this.newImg = origImg;
+  Entity(PImage img) {
+    this.origImg = img;
+    this.newImg = img;
   }
 
   void changeColor(int changeColor, int newColor) {

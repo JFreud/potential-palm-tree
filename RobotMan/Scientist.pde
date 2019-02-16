@@ -1,12 +1,15 @@
-class Scientist extends Entity{
+class Scientist extends Entity {
   String name;
-  
-  Scientist(int x, int y){
+
+  Scientist(int x, int y, PImage img) {
+    super(img);
+
+
     this.x = x;
     this.y = y;
   }
-  
-  void display(){
-    
+
+  void display() {
+    image(newImg, x, y, 100, 100);
   }
 }
