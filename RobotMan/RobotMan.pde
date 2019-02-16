@@ -1,54 +1,51 @@
 
 Robot player;
 ArrayList<Door> doors;
+int prevRoomNum = -1;
 int roomNum = 0;
 int maxRoom = 2;
+color bgco = 125;
 boolean up, down, left, right;
 Table table;
 Scientist scientist;
 
 
 
-void drawRoom0() {
+void setupRoom0() {
   doors.clear();
-  background(192); //silver
+  bgco = color(192);
   doors.add(new Door (width - 10, height/2 - 20, 10, 40)); //adds the door everytime--inefficient
   
+  
+}
+
+void setupRoom1() {
+  doors.clear();
+  bgco = color(150, 75, 0);
+  doors.add(new Door (0, height/2 - 20, 10, 40));
+  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
+}
+
+void setupRoom2() {
+  doors.clear();
+  bgco = color(150, 200, 0);
+  doors.add(new Door (0, height/2 - 20, 10, 40));
+  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
+}
+
+void drawRoom() {
+  if (roomNum != prevRoomNum) {
+    if (roomNum == 0) setupRoom0();
+    if (roomNum == 1) setupRoom1();
+    if (roomNum == 2) setupRoom2();
+    prevRoomNum = roomNum;
+  }
+  background(bgco);
   for (int i = 0; i < doors.size(); i++) {
     doors.get(i).display(); //display every door in the room (room0 only has the rightdoor)
   }
   table.display();
   scientist.display();
-}
-
-void drawRoom1() {
-  doors.clear();
-  background(150, 75, 0); //brown
-  doors.add(new Door (0, height/2 - 20, 10, 40));
-  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
-  for (int i = 0; i < doors.size(); i++) {
-    doors.get(i).display();
-  }
-  table.display();
-  scientist.display();
-}
-
-void drawRoom2() {
-  doors.clear();
-  background(150, 200, 0); //brown
-  doors.add(new Door (0, height/2 - 20, 10, 40));
-  doors.add(new Door (width - 10, height/2 - 20, 10, 40));
-  for (int i = 0; i < doors.size(); i++) {
-    doors.get(i).display();
-  }
-  table.display();
-  scientist.display();
-}
-
-void drawRoom() {
-  if (roomNum == 0) drawRoom0();
-  if (roomNum == 1) drawRoom1();
-  if (roomNum == 2) drawRoom2();
   println(roomNum);
   }
 
