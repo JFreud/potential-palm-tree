@@ -10,7 +10,7 @@ class Robot {
     this.speed = speed;
     dir = 90;
   }
-  
+
   void display() {
     fill(255);
     ellipse(pos.x, pos.y, size, size);
@@ -18,26 +18,28 @@ class Robot {
     checkBoundaries();
     //checkDoors();
   }
-  
+
   void update() {
-    if (up) { 
-      pos.y -= speed;
-      dir = 0;
-    }
-    if (left) { 
-      pos.x -= speed; 
-      dir = 270;
-    }
-    if (down) { 
-      pos.y += speed; 
-      dir = 180;
-    }
-    if (right) {
-      pos.x += speed; 
-      dir = 90;
+    if (lastPressed.size() != 0) {
+      if (lastPressed.get(0).equals("up")) { 
+        pos.y -= speed;
+        dir = 0;
+      }
+      if (lastPressed.get(0).equals("left")) { 
+        pos.x -= speed; 
+        dir = 270;
+      }
+      if (lastPressed.get(0).equals("down")) { 
+        pos.y += speed; 
+        dir = 180;
+      }
+      if (lastPressed.get(0).equals("right")) {
+        pos.x += speed; 
+        dir = 90;
+      }
     }
   }
-  
+
   //void checkDoors() {
   // for (int i = 0; i < currRoom.entities.size(); i++) {
   //  if (currRoom.
@@ -65,8 +67,8 @@ class Robot {
   //      }
   // }
   //}
-  
-   void checkBoundaries() {
+
+  void checkBoundaries() {
     if (pos.x <= 0) {
       pos.x = 0;
     }
@@ -81,16 +83,32 @@ class Robot {
     }
   }
   void keyPressed() {
-  if (key == 'w') { up = true; }
-  if (key == 'a') { left = true; }
-  if (key == 's') { down = true; }
-  if (key == 'd') { right = true; }
-}
+    if (key == 'w') { 
+      up = true;
+    }
+    if (key == 'a') { 
+      left = true;
+    }
+    if (key == 's') { 
+      down = true;
+    }
+    if (key == 'd') { 
+      right = true;
+    }
+  }
 
-void keyReleased() {
-  if (key == 'w') { up = false; }
-  if (key == 'a') { left = false; }
-  if (key == 's') { down = false; }
-  if (key == 'd') { right = false; }
-}
+  void keyReleased() {
+    if (key == 'w') { 
+      up = false;
+    }
+    if (key == 'a') { 
+      left = false;
+    }
+    if (key == 's') { 
+      down = false;
+    }
+    if (key == 'd') { 
+      right = false;
+    }
+  }
 }
