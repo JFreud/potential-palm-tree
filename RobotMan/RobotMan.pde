@@ -1,5 +1,7 @@
 
 Robot player;
+int sizeX = 500; 
+int sizeY = 400;
 Room room0, room1, room2;
 Room currRoom;
 int prevRoomNum = -1;
@@ -7,6 +9,9 @@ int roomNum = 0;
 int maxRoom = 2;
 boolean up, down, left, right, interact;
 ArrayList<String> lastPressed;
+boolean inMenu = true;
+ArrayList<String> opts = new ArrayList<String>();
+OptionBox currentBox;
 
 
 
@@ -46,6 +51,7 @@ void drawRoom() {
     currRoom.entities.get(i).checkColliding(player);
   }
   //println(roomNum);
+  currentBox.display();
 }
 
 
@@ -58,8 +64,15 @@ void setup() {
   setupRoom1();
   setupRoom2();
   player = new Robot(20, 3);
-  drawRoom();
+
   lastPressed = new ArrayList<String>();
+  opts.add("a");
+  opts.add("b");
+  opts.add("c");
+  currentBox = new OptionBox(120, 6, "Hi there!", opts );
+
+
+  drawRoom();
 }
 
 void draw() {
@@ -73,53 +86,69 @@ void gameState() {
 
 
 void keyPressed() {
-  if (key == 'k') {
-    interact = true;
-  }
-  if (key == 'w') { 
-    if (up == false) { 
-      up = true;
-      lastPressed.add(0, "up");
+  if ( inMenu) {
+  } else {
+    if (key == 'k') {
+      interact = true;
     }
-  }
-  if (key == 'a') { 
-    if (left == false) {
-      left = true;
-      lastPressed.add(0, "left");
+    if (key == 'w') { 
+      if (up == false) { 
+        up = true;
+        lastPressed.add(0, "up");
+      }
     }
-  }
-  if (key == 's') { 
-    if (down == false) {
-      down = true;
-      lastPressed.add(0, "down");
+    if (key == 'a') { 
+      if (left == false) {
+        left = true;
+        lastPressed.add(0, "left");
+      }
     }
-  }
-  if (key == 'd') { 
-    if (right == false) {
-      right = true;
-      lastPressed.add(0, "right");
+    if (key == 's') { 
+      if (down == false) {
+        down = true;
+        lastPressed.add(0, "down");
+      }
+    }
+    if (key == 'd') { 
+      if (right == false) {
+        right = true;
+        lastPressed.add(0, "right");
+      }
     }
   }
 }
 
 void keyReleased() {
-  if (key == 'k') {
-    interact = false;
-  }
-  if (key == 'w') { 
-    up = false;
-    lastPressed.remove("up");
-  }
-  if (key == 'a') { 
-    left = false;
-    lastPressed.remove("left");
-  }
-  if (key == 's') { 
-    down = false;
-    lastPressed.remove("down");
-  }
-  if (key == 'd') { 
-    right = false;
-    lastPressed.remove("right");
+  if (inMenu) {
+    if (key == 'w') {
+      if (currentBox.currentlySelected > 0) {
+        currentBox.currentlySelected --;
+      }
+    }
+    if (key == 's') {
+      if (currentBox.currentlySelected < currentBox.numOptions()-1) {
+        currentBox.currentlySelected ++;
+      }
+    }
+  } else {
+    if (key == 'k') {
+      interact = false;
+    }
+    if (key == 'w') { 
+      up = false;
+      lastPressed.remove("up");
+    }
+    if (key == 'a') { 
+      left = false;
+      lastPressed.remove("left");
+    }
+    if (key == 's') { 
+      down = false;
+      lastPressed.remove("down");
+    }
+    if (key == 'd') { 
+      right = false;
+      lastPressed.remove("right");
+    }
   }
 }

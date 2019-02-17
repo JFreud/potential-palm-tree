@@ -13,6 +13,9 @@ class Entity {
   void display() {
   };
 
+  void update() {
+  };
+
   void checkColliding(Robot player) {
 
     if ((isWithin((int)player.pos.x, (int)player.pos.y)
@@ -68,5 +71,4 @@ class Entity {
     //println(" NO INTERACTABLE");
     return false;
   }
-
 }
