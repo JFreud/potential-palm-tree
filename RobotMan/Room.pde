@@ -1,9 +1,9 @@
 class Room {
   int num;
-  color bgco;
+  PImage bgco;
   ArrayList<Entity> entities;
   
-  Room (ArrayList<Entity> entities, color bgco) {
+  Room (ArrayList<Entity> entities, PImage bgco) {
     this.entities = entities;
     this.bgco = bgco;
   }

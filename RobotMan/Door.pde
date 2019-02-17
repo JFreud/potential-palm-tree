@@ -18,7 +18,7 @@ class Door extends RegEntity {
         if (roomNum >= maxRoom) {
           roomNum = maxRoom;
         }
-        player.pos.x = 20;
+        player.pos.x = 40;
         player.pos.y = height/2;
       }
       if (x < width/2) { //left door

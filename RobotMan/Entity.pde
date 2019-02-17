@@ -10,8 +10,9 @@ class Entity {
     this.ht = ht;
   }
 
-  void display() {
-  };
+  void display() {};
+  
+  void neutralize() {};
 
   void checkColliding(Robot player) {
 
