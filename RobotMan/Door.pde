@@ -10,6 +10,10 @@ class Door extends RegEntity {
     rect(x, y, wth, ht);
   }
   
+  boolean checkColliding(Robot player){
+    return false;
+  }
+  
   
   
 }

@@ -1,9 +1,8 @@
 class RegEntity extends Entity {
-  int wth, ht;
   int col;
   
   RegEntity(int x, int y, int wth, int ht, int col){
-    super(x, y);
+    super(x, y, wth, ht);
     this.wth = wth;
     this.ht = ht;
     this.col = col;

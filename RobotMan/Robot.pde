@@ -16,7 +16,7 @@ class Robot {
     ellipse(pos.x, pos.y, size, size);
     update();
     checkBoundaries();
-    checkDoors();
+    //checkDoors();
   }
   
   void update() {
@@ -38,33 +38,33 @@ class Robot {
     }
   }
   
-  void checkDoors() {
-   for (int i = 0; i < currRoom.entities.size(); i++) {
-    if (currRoom.
-    Door currDoor = doors.get(i);
-    if (pos.x >= currDoor.x && 
-        pos.x - 5 <= currDoor.dWidth &&
-        pos.y >= currDoor.y && 
-        pos.y <= currDoor.y + currDoor.dHeight) {
-         roomNum--; 
-         if (roomNum <= 0) {
-           roomNum = 0;
-         }
-         pos.x = width - 20;
-         pos.y = height/2;
-        }
-    if (pos.x >= width - currDoor.dWidth && 
-        pos.y >= currDoor.y && 
-        pos.y <= currDoor.y + currDoor.dHeight) {
-         roomNum++;
-         if (roomNum >= maxRoom) {
-            roomNum = maxRoom; 
-         }
-         pos.x = 20;
-         pos.y = height/2;
-        }
-   }
-  }
+  //void checkDoors() {
+  // for (int i = 0; i < currRoom.entities.size(); i++) {
+  //  if (currRoom.
+  //  Door currDoor = doors.get(i);
+  //  if (pos.x >= currDoor.x && 
+  //      pos.x - 5 <= currDoor.dWidth &&
+  //      pos.y >= currDoor.y && 
+  //      pos.y <= currDoor.y + currDoor.dHeight) {
+  //       roomNum--; 
+  //       if (roomNum <= 0) {
+  //         roomNum = 0;
+  //       }
+  //       pos.x = width - 20;
+  //       pos.y = height/2;
+  //      }
+  //  if (pos.x >= width - currDoor.dWidth && 
+  //      pos.y >= currDoor.y && 
+  //      pos.y <= currDoor.y + currDoor.dHeight) {
+  //       roomNum++;
+  //       if (roomNum >= maxRoom) {
+  //          roomNum = maxRoom; 
+  //       }
+  //       pos.x = 20;
+  //       pos.y = height/2;
+  //      }
+  // }
+  //}
   
    void checkBoundaries() {
     if (pos.x <= 0) {
