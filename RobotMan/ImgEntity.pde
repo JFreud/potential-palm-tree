@@ -10,7 +10,6 @@ class ImgEntity extends Entity {
   }
   void changeColor(int changeColor, int newColor) {
     PImage workImg = origImg.copy();
-    int dimension = workImg.width * workImg.height;
     workImg.loadPixels();
     for (int i = 0; i < dimension; i ++) {
       if (workImg.pixels[i] == changeColor) {
@@ -19,5 +18,20 @@ class ImgEntity extends Entity {
     }
     workImg.updatePixels();
     newImg = workImg;
+  }
+  void neutralize(int range) {
+    PImage workImg = origImg.copy();
+    int totr = 0; int totg = 0; int totb = 0;
+    workImg.loadPixels();
+    for (int i = 0; i < dimension; i++) {
+      totr += red(pixels[i]);
+      totg += green(pixels[i]);
+      totb += blue(pixels[i]);
+    }
+    for (int i = 0; i < dimension; i++) {
+      pixels[i] = color(totr/dimension + (red(pixels[i])-126)*range/126, 
+      totg/dimension + (green(pixels[i])-126)*range/126,
+      totb/dimension + (blue(pixels[i])-126)*range/126);
+    }
   }
 }
