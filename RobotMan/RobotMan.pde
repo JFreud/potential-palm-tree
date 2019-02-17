@@ -16,26 +16,36 @@ OptionBox currentBox;
 
 
 void setupRoom0() {
+  PImage bg = loadImage("floor.png");
+  println(bg.width);
+  println(bg.height);
   ArrayList<Entity> r0Entities = new ArrayList<Entity>();
   r0Entities.add(new Door (width - 10, height/2 - 20, 10, 40, 0));
   r0Entities.add(new Scientist(200, 200, 100, 100, loadImage("SteveNewHead.png")));
-  r0Entities.add(new Table(50, 50, color(182, 155, 76), 40, 40, 4, 0));
-
-  room0 = new Room(r0Entities, color(192));
+  r0Entities.add(new Table(10, 35, color(200), 200, 40, 4, 0));
+  r0Entities.add(new Table(260, 35, color(200), 200, 40, 4, 0));
+  r0Entities.add(new Table(10, 100, color(200), 50, 200, 4, 0));
+  r0Entities.add(new Computer(70, 18, 60, 40));
+  room0 = new Room(r0Entities, bg);
 }
 
 void setupRoom1() {
+  PImage bg = loadImage("floor.png");
   ArrayList<Entity> r1Entities = new ArrayList<Entity>();
   r1Entities.add(new Door (0, height/2 - 20, 10, 40, 0));
   r1Entities.add(new Door (width - 10, height/2 - 20, 10, 40, 0));
-  room1 = new Room(r1Entities, color(150, 75, 0));
+  r1Entities.add(new Computer (width/2, 50, 60, 40));
+  room1 = new Room(r1Entities, bg);
 }
 
 void setupRoom2() {
+  PImage bg = loadImage("floor.png");
   ArrayList<Entity> r2Entities = new ArrayList<Entity>();
   r2Entities.add(new Door (0, height/2 - 20, 10, 40, 0));
   r2Entities.add(new Door (width - 10, height/2 - 20, 10, 40, 0));
-  room2 = new Room(r2Entities, color(150, 200, 0));
+  r2Entities.add(new Scientist(200, 200, 100, 100, loadImage("airpod.png")));
+  
+  room2 = new Room(r2Entities, bg);
 }
 
 void drawRoom() {
@@ -49,6 +59,7 @@ void drawRoom() {
   for (int i = 0; i < currRoom.entities.size(); i++) {
     currRoom.entities.get(i).display(); //display every entity in the room (room0 only has the rightdoor)
     currRoom.entities.get(i).checkColliding(player);
+    currRoom.entities.get(i).neutralize();
   }
   //println(roomNum);
   currentBox.display();

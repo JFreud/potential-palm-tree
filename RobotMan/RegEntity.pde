@@ -8,6 +8,7 @@ class RegEntity extends Entity {
     this.col = col;
   }
   
+  void neutralize() {};
   
   
 }
