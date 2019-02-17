@@ -40,8 +40,33 @@ class Entity {
     return (px > x && px < x + wth) && (py > y && py < y + ht);
   }
 
-  boolean checkInteractable(Robot player) {
 
+  boolean checkInteractable(Robot player) {
+    if (interact) {
+      PVector point = new PVector(x, y);
+      if (player.dir == 0) {
+        point.x = player.pos.x + player.size/2;
+        point.y = player.pos.y - 5;
+      }
+      if (player.dir == 90) {
+        point.x = player.pos.x + player.size + 5;
+        point.y = player.pos.y + player.size/2;
+      }
+      if (player.dir == 180) {
+        point.x = player.pos.x + player.size/2;
+        point.y = player.pos.y + player.size + 5;
+      }
+      if (player.dir == 270) {
+        point.x = player.pos.x - 5;
+        point.y = player.pos.y + player.size/2;
+      }
+      //if (isWithin((int)point.x, (int)point.y)) {
+      //  println("INTERACTABLE");
+      //}
+      return isWithin((int)point.x, (int)point.y);
+    }
+    //println(" NO INTERACTABLE");
     return false;
   }
+
 }

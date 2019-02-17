@@ -5,7 +5,7 @@ Room currRoom;
 int prevRoomNum = -1;
 int roomNum = 0;
 int maxRoom = 2;
-boolean up, down, left, right;
+boolean up, down, left, right, interact;
 ArrayList<String> lastPressed;
 
 
@@ -14,7 +14,7 @@ void setupRoom0() {
   ArrayList<Entity> r0Entities = new ArrayList<Entity>();
   r0Entities.add(new Door (width - 10, height/2 - 20, 10, 40, 0));
   r0Entities.add(new Scientist(200, 200, 100, 100, loadImage("SteveNewHead.png")));
-  r0Entities.add(new Table(50, 50, color(182,155,76), 40, 40, 4, 0));
+  r0Entities.add(new Table(50, 50, color(182, 155, 76), 40, 40, 4, 0));
 
   room0 = new Room(r0Entities, color(192));
 }
@@ -45,7 +45,7 @@ void drawRoom() {
     currRoom.entities.get(i).display(); //display every entity in the room (room0 only has the rightdoor)
     currRoom.entities.get(i).checkColliding(player);
   }
-  println(roomNum);
+  //println(roomNum);
 }
 
 
@@ -57,7 +57,7 @@ void setup() {
   setupRoom0();
   setupRoom1();
   setupRoom2();
-  player = new Robot(20, 5);
+  player = new Robot(20, 3);
   drawRoom();
   lastPressed = new ArrayList<String>();
 }
@@ -73,6 +73,9 @@ void gameState() {
 
 
 void keyPressed() {
+  if (key == 'k') {
+    interact = true;
+  }
   if (key == 'w') { 
     if (up == false) { 
       up = true;
@@ -100,6 +103,9 @@ void keyPressed() {
 }
 
 void keyReleased() {
+  if (key == 'k') {
+    interact = false;
+  }
   if (key == 'w') { 
     up = false;
     lastPressed.remove("up");
