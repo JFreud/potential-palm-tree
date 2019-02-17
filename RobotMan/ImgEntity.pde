@@ -3,8 +3,8 @@ class ImgEntity extends Entity {
   PImage origImg;
   PImage newImg;
   
-  ImgEntity(int x, int y, PImage img) {
-    super(x, y, img.width, img.height);
+  ImgEntity(int x, int y,int wth, int ht, PImage img) {
+    super(x, y, wth, ht);
     this.origImg = img;
     this.newImg = img;
   }

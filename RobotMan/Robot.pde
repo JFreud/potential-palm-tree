@@ -13,7 +13,7 @@ class Robot {
   
   void display() {
     fill(255);
-    ellipse(pos.x, pos.y, size, size);
+    rect(pos.x, pos.y, size, size);
     update();
     checkBoundaries();
     //checkDoors();

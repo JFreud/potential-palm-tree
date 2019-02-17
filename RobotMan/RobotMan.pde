@@ -12,7 +12,7 @@ boolean up, down, left, right;
 void setupRoom0() {
   ArrayList<Entity> r0Entities = new ArrayList<Entity>();
   r0Entities.add(new Door (width - 10, height/2 - 20, 10, 40, 0));
-  r0Entities.add(new Scientist(200, 200, loadImage("SteveNewHead.png")));
+  r0Entities.add(new Scientist(200, 200, 100, 100, loadImage("SteveNewHead.png")));
   r0Entities.add(new Table(50, 50, color(182,155,76), 40, 40, 4, 0));
   room0 = new Room(r0Entities, color(192));
 }
@@ -41,6 +41,7 @@ void drawRoom() {
   background(currRoom.bgco);
   for (int i = 0; i < currRoom.entities.size(); i++) {
     currRoom.entities.get(i).display(); //display every entity in the room (room0 only has the rightdoor)
+    currRoom.entities.get(i).checkColliding(player);
   }
   println(roomNum);
   }
